@@ -547,8 +547,9 @@ process_dataset(train_val_input, train_val_output, config)
 process_dataset(test_input, test_output, config)
 ```
 
-<h2 id="fmUvM"><font style="color:rgb(51, 51, 51);">版本</font></h2>
+<h2 id="fmUvM"><font style="color:rgb(51, 51, 51);">Packages</font></h2>
 <h3 id="WWnwt"><font style="color:rgb(51, 51, 51);">1.python</font></h3>
+
 ```python
 (nnunet_env) $ python
 Python 3.10.15 (main, Oct  3 2024, 07:27:34) [GCC 11.2.0] on linux
@@ -793,5 +794,5 @@ Required-by:
 ```
 
   
- 
+
 
