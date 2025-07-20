@@ -1,4 +1,4 @@
-<h2 id="KAmaP"><font style="color:rgba(0, 0, 0, 0.95);">Environment configuration</font></h2>
+## <font style="color:rgba(0, 0, 0, 0.95);">Environment configuration</font>
 ```python
 ### Activate the base environment
 conda init
@@ -19,7 +19,7 @@ pip install -e .
 pip install --upgrade git+https://github.com/FabianIsensee/hiddenlayer.git@more_plotted_details#egg=hiddenlayer
 ```
 
-<h2 id="eoSpl"><font style="color:rgba(0, 0, 0, 0.95);">nnUNet segementation</font></h2>
+## <font style="color:rgba(0, 0, 0, 0.95);">nnUNet segementation</font>
 ```python
 nnUNetv2_convert_MSD_dataset -i /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/nnUNet_raw/Task333_CRS -overwrite_id 333
 
@@ -95,7 +95,7 @@ nnUNetv2_ensemble -i /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/Dataset333_2d_predi
 nnUNetv2_apply_postprocessing -i /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/Dataset333_Ensemble -o /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/Dataset333_Ensemble_PP -pp_pkl_file /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/nnUNet_results/Dataset333_CRS/ensembles/ensemble___nnUNetTrainer__nnUNetPlans__2d___nnUNetTrainer__nnUNetPlans__3d_fullres___0_1_2_3_4/postprocessing.pkl -np 8 -plans_json /new_hme/zkz/nnUNet/nnUNetFrame/DATASET/nnUNet_results/Dataset333_CRS/ensembles/ensemble___nnUNetTrainer__nnUNetPlans__2d___nnUNetTrainer__nnUNetPlans__3d_fullres___0_1_2_3_4/plans.json
 ```
 
-<h2 id="JEDBi">Train-val data evaluation</h2>
+## Train-val data evaluation
 ```python
 import os
 import json
@@ -153,7 +153,7 @@ df.to_excel(output_excel_path, index=False)
 print(f"Data saved to {output_excel_path}")
 ```
 
-<h2 id="LMMFD">Test data evaluation</h2>
+## Test data evaluation
 ```python
 import os
 import nibabel as nib
@@ -229,7 +229,7 @@ output_csv = r'H:\Test.csv'
 calculate_dice_and_iou_for_all_pairs(true_dir, pred_dir, output_csv)#, max_pairs=10)
 ```
 
-<h2 id="JqgU1"><font style="color:rgb(28, 31, 35);">Dice_iou_visualization</font></h2>
+## <font style="color:rgb(28, 31, 35);">Dice_iou_visualization</font>
 ```r
 # Load necessary libraries
 library(read.csv)   # For reading CSV files
@@ -547,16 +547,15 @@ process_dataset(train_val_input, train_val_output, config)
 process_dataset(test_input, test_output, config)
 ```
 
-<h2 id="fmUvM"><font style="color:rgb(51, 51, 51);">Packages</font></h2>
-<h3 id="WWnwt"><font style="color:rgb(51, 51, 51);">1.python</font></h3>
-
+## Packages
+### <font style="color:rgb(51, 51, 51);">1.python</font>
 ```python
 (nnunet_env) $ python
 Python 3.10.15 (main, Oct  3 2024, 07:27:34) [GCC 11.2.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 ```
 
-<h3 id="PFojs"><font style="color:rgb(51, 51, 51);">2.PyTorch</font></h3>
+### <font style="color:rgb(51, 51, 51);">2.PyTorch</font>
 ```python
 (nnunet_env) $ python
 Python 3.10.15 (main, Oct  3 2024, 07:27:34) [GCC 11.2.0] on linux
@@ -568,7 +567,7 @@ Type "help", "copyright", "credits" or "license" for more information.
     2.4.1
 ```
 
-<h3 id="xALXf"><font style="color:rgb(51, 51, 51);">3.CUDA</font></h3>
+### <font style="color:rgb(51, 51, 51);">3.CUDA</font>
 ```python
 (nnunet_env) $ nvcc --version
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -578,7 +577,7 @@ Cuda compilation tools, release 12.6, V12.6.68
 Build cuda_12.6.r12.6/compiler.34714021_0
 ```
 
-<h3 id="kN5Qe"><font style="color:rgb(51, 51, 51);">4.nnUNetv2</font></h3>
+### <font style="color:rgb(51, 51, 51);">4.nnUNetv2</font>
 ```python
 Name: nnunetv2
 Version: 2.5.1
