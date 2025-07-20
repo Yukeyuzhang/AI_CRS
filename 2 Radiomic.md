@@ -1,4 +1,4 @@
-<h2 id="k1Kqe">ICC</h2>
+## ICC
 ```python
 import pingouin as pg
 import pandas as pd
@@ -77,7 +77,7 @@ ICC1 = DataFrame(ICC)
 ICC1.to_excel(r'E:/After Inter-ICC30.xlsx', index=False)
 ```
 
-<h2 id="yytxO">Person</h2>
+## Person
 ```r
 # Read the Excel file
 library(readxl)
@@ -122,7 +122,7 @@ data2_filtered <- data2[, !colnames(data2) %in% redundant_features]
 write.csv(data2_filtered, file = "E:/E.csv", row.names = FALSE)
 ```
 
-<h2 id="Z6cyL">PyRadiomic</h2>
+## PyRadiomic
 ```python
 # This is an example of a parameters file
 # It is written according to the YAML-convention (www.yaml.org) and is checked by the code for consistency.
@@ -242,7 +242,7 @@ print("Time:", total_time, "s")
 df.to_excel('E:/A.xlsx')
 ```
 
-<h2 id="ra2Cg">LASSO</h2>
+## LASSO
 ```r
 ####################################################################################################################
 ### title: "Prognosis - Grouping"
@@ -522,7 +522,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
-<h2 id="rTZXh">SVM</h2>
+## SVM
 ```r
 ################################################################################
 ### title: "Prognosis - Grouping"
@@ -754,7 +754,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
-<h2 id="LRqR6">RF</h2>
+## RF
 ```r
 ################################################################################
 ### title: "Prognosis - Grouping"
@@ -980,7 +980,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
-<h2 id="rGwg1">XGBoost</h2>
+## XGBoost
 ```r
 ################################################################################
 ### title: "Prognosis - Grouping"

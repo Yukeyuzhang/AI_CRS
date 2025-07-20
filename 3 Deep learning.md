@@ -1,4 +1,4 @@
-<h2 id="qhRUo">Preprocessing</h2>
+## Preprocessing
 ```python
 from skimage.measure import regionprops
 import nibabel as nib
@@ -56,7 +56,7 @@ for i in range(1, n):
 
 ```
 
-<h2 id="owp7d">CNN</h2>
+## CNN
 ```python
 import torch
 import torch.nn as nn
@@ -246,7 +246,7 @@ class AlexNet_3D(nn.Module):
         return x
 ```
 
-<h2 id="qAcvU">ViT</h2>
+## ViT
 ```python
 import numpy as np
 import torch
@@ -485,7 +485,7 @@ class ViT3D(nn.Module):
         return x
 ```
 
-<h2 id="yARED">SwinT</h2>
+## SwinT
 ```python
 import numpy as np
 import torch
@@ -924,7 +924,7 @@ class SwinT3D(nn.Module):
         return x
 ```
 
-<h2 id="ujF24">Main</h2>
+## Main
 ```python
 import os
 import argparse

@@ -1,4 +1,4 @@
-<h2 id="naAkv">Clinical</h2>
+## Clinical
 ```r
 # Load necessary packages
 library(readxl)
@@ -124,7 +124,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
-<h2 id="DQCFI">CT-score</h2>
+## CT-score
 ```r
 # Load necessary packages
 library(readxl)
@@ -254,7 +254,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
-<h2 id="AxJUW">Combined</h2>
+## Combined
 ```r
 # Load necessary packages
 library(readxl)
@@ -386,7 +386,7 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()    
 ```
 
-<h2 id="rCYNb">ROC</h2>
+## ROC
 ```r
 library(readxl)
 library(pROC)
@@ -634,7 +634,7 @@ for (cohort in cohorts) {
 }
 ```
 
-<h2 id="DnUVD">Calibration</h2>
+## Calibration
 ```r
 library(rms)
 library(readxl)
@@ -708,7 +708,7 @@ for (name in names(hl_tests)) {
 }
 ```
 
-<h2 id="aKd67">DCA</h2>
+## DCA
 ```r
 library(readxl)
 library(rmda)
@@ -815,7 +815,7 @@ plot_decision_curve(dca_list,
 dev.off()  # Close PDF device    
 ```
 
-<h2 id="LyVwl">NRI and IDI</h2>
+## NRI and IDI
 ```r
 # Load necessary libraries
 library(readxl)
@@ -888,7 +888,7 @@ print("ResNet vs CTscore")
 print(res_ResNet_vs_CTscore)
 ```
 
-<h2 id="qvEIv">Heatmap</h2>
+## Heatmap
 ```r
 library(corrplot)
 library(readxl)

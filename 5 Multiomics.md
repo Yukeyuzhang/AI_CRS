@@ -1,4 +1,4 @@
-<h2 id="EzkOf">Unsupervised clustering</h2>
+## Unsupervised clustering
 ```r
 library("Biobase")
 library("BiocGenerics")
@@ -90,7 +90,7 @@ icl <- calcICL(results,
 # icl[["itemConsensus"]][1:5,]
 ```
 
-<h2 id="PhaiQ">3D PCA</h2>
+## 3D PCA
 ```r
 # Load necessary libraries
 library(readxl)
@@ -247,7 +247,7 @@ p <- plot_ly(pca_scores, x = ~Dim.1, y = ~Dim.2, z = ~Dim.3,
 p
 ```
 
-<h2 id="Cyxfv"><font style="color:rgba(0, 0, 0, 0.8);">Differential protein analysis</font></h2>
+## <font style="color:rgba(0, 0, 0, 0.8);">Differential protein analysis</font>
 ```r
 # Load necessary R packages
 library(readxl)
@@ -377,9 +377,5 @@ combined_plot <- plot_grid(plotlist = plot_list, ncol = 3)  # Display 3 plots pe
 ggsave(filename = "E:/Cluster/1 VS 1/Volcano.png",
        plot = combined_plot,
        width = 14, height = 8, dpi = 300, bg = "white")  # Ensure the image is not cropped
-```
-
-```r
-
 ```
 
