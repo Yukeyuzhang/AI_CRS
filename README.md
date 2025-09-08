@@ -33,13 +33,13 @@ After preparing your preoperative sinus CT image data, ensure the images are in 
 · Reproduction instructions
 All data in this study are supported for acquisition and one-click reproduction. Please contact the author at kzzhuu@foxmail.com or zhengliuent@hotmail.com.
 
-Additional information
-  CRS has a high postoperative recurrence rate, making accurate preoperative prognosis crucial for effective management. This work develops two types of models:
+Additional information: 
+  CRS has a high postoperative recurrence rate, making accurate preoperative prognosis crucial for effective management. This work develops two types of models.
   i) A radiomic model using features extracted from semi-automatic (threshold-based) segmentation of CT images.
   ii) A deep learning model using features from fully-automatic (nnUNetV2-based) segmentation of CT images.
   Both models demonstrate superior performance compared to traditional prognostic methods, including CT-score models and clinical blood eosinophil-based models. They exhibit stable performance across both internal and external test cohorts.
 
-Key Points
+Key Points: 
   i) Noninvasive prognosis: Utilizes preoperative CT images, avoiding the need for invasive procedures.
   ii) Multi-cohort evaluation: Developed and evaluated across the largest CRS patient cohorts from various institutions, demonstrating stable and superior performance.
   iii) Biological relevance: Multi-omics analysis links radiomic features to tissue proteomic and histologic profiles.
