@@ -1,4 +1,4 @@
-## Preprocessing
+### Preprocessing
 ```python
 from skimage.measure import regionprops
 import nibabel as nib
