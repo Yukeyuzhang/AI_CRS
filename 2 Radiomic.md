@@ -144,7 +144,7 @@ write.csv(data2_filtered, file = "E:/E.csv", row.names = FALSE)
  
 # Settings to use, possible settings are listed in the documentation (section "Customizing the extraction").
 setting:
-  binWidth: 5    # Set 1,2,3,4,5,6,7,8,9,10
+  binWidth: 15    # Set 1,2,3,4,5,6,7,8,9,10
   label: 1
   interpolator: 'sitkBSpline' # This is an enumerated value, here None is not allowed
   resampledPixelSpacing: [1, 1, 1]# This disables resampling, as it is interpreted as None, to enable it, specify spacing in x, y, z as [x, y , z]
