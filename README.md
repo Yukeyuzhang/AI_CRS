@@ -25,10 +25,12 @@ If readers use the cloud platform, no typical install is needed. If readers use 
 3. Demo
 · Instructions to run on data:
 We recommend that readers run the model directly on the cloud platform rather than train it from scratch (of course, you can choose to do so, as all source codes are public).
+· Expected output:
+For each input patient, the platform returns (i) a 3D sinus segmentation mask, (ii) the predicted probability of uncontrolled disease at 12 months after ESS, and (iii) the corresponding binary classification together with the suggested surgical extent. A worked example for one demo patient, including the expected output files, is provided in the repository.
 · Expected run time for demo on a "normal" desktop computer:
 The demonstration of a single patient on the cloud platform takes about 30 seconds, depending on network configuration and cloud server parallelism. If readers develop models from scratch, the time consumed depends on the amount of training and validation data, epochs, and computing power configuration.
 
-4. Instructions for use
+5. Instructions for use
 · How to run the software on your data:
 After preparing your preoperative sinus CT image data, ensure the images are in a compatible format. After your user account application is approved, you are welcome to upload your original data for one-click processing. Alternatively, you can use your preoperative sinus CT image data to train the model from scratch. All relevant source codes are provided, allowing you to train the model from scratch using your own data.
 · Reproduction instructions:
