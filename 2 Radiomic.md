@@ -1065,3 +1065,144 @@ text(spec, sens, labels = paste("Sens:", round(sens, 2), "\nSpec:", round(spec, 
 dev.off()
 ```
 
+## LR
+```r
+################################################################################
+### title: "Prognosis - Grouping"
+### author: "Kzzhu"
+################################################################################
+### 1. Environment Configuration-----------------------------------------------------------------
+{
+  suppressMessages({
+    library(readxl)
+    library(randomForest)
+    library(pROC)
+    library(ggplot2)
+    library(caret)
+  })
+  rm(list = ls())
+  options(stringsAsFactors = F)
+  work_dir <- "E:/Radiomics"
+  setwd(work_dir)
+}
+
+### 2. Read Data-----------------------------------------------------------------
+Train <- read_excel("E:/Train-val.xlsx", sheet = 1)
+X_Rad <- data.matrix(Train[, 6:ncol(Train)])
+Y_Rad <- as.factor(make.names(Train$Diagnosis))   # Label data
+Rad <- data.frame(Diagnosis = Y_Rad, X_Rad)
+dim(Rad)
+
+### 3. Define Cross-Validation and Hyperparameter Grids-----------------------------------------
+# 3.1 Cross-validation settings (only 10-fold 10-repeated)
+cv_control <- trainControl(
+  method = "repeatedcv", 
+  number = 10,          # 10 folds
+  repeats = 10,         # 10 repetitions
+  classProbs = TRUE, 
+  summaryFunction = twoClassSummary
+)
+
+# 3.2 Hyperparameter grids (multiple options)
+# Option 1: Vary mtry (number of variables randomly sampled as candidates at each split)
+tune_grid_1 <- expand.grid(mtry = c(10, 20, 30, 40, 50, 60))  # Test a range around p/3
+
+# Option 2: Combine mtry with other parameters
+tune_grid_2 <- expand.grid(
+  mtry = c(20, 40, 60),
+  ntree = c(1000, 1500, 2000),  # Number of trees (higher for stability)
+  nodesize = c(5, 10, 15),      # Minimum size of terminal nodes
+  maxnodes = c(20, 30, 40)      # Maximum number of terminal nodes
+)
+
+### 4. Train Random Forest Models with 10-fold 10-repeated CV--------------------------------------
+set.seed(10)  # For reproducibility
+
+# Model 1: Vary mtry
+fitRF_mtry <- train(
+  Diagnosis ~ ., 
+  data = Rad, 
+  method = "rf", 
+  trControl = cv_control, 
+  metric = "ROC",
+  tuneGrid = tune_grid_1,
+  ntree = 1000
+)
+save(fitRF_mtry, file = "E:/Radiomics/fitRF_mtry_10fold10rep.RData")
+
+# Model 2: Comprehensive parameter search
+fitRF_comprehensive <- train(
+  Diagnosis ~ ., 
+  data = Rad, 
+  method = "rf", 
+  trControl = cv_control, 
+  metric = "ROC",
+  tuneGrid = tune_grid_2
+)
+save(fitRF_comprehensive, file = "E:/Radiomics/fitRF_comprehensive_10fold10rep.RData")
+
+### 5. Evaluate Best Model and Plot ROC----------------------------------------------------------
+# Select the best model based on CV ROC
+model_list <- list(
+  mtry_model = fitRF_mtry,
+  comprehensive_model = fitRF_comprehensive
+)
+cv_auc <- sapply(model_list, function(x) max(x$results$ROC))
+best_model_name <- names(which.max(cv_auc))
+best_model <- model_list[[best_model_name]]
+cat("Best model:", best_model_name, "with CV ROC:", round(max(cv_auc), 4), "\n")
+cat("Best hyperparameters:", paste(names(best_model$bestTune), best_model$bestTune, collapse = ", "), "\n")
+
+# Get predicted probabilities
+Y_predict <- predict(best_model, Rad, type = "prob")[, 2]
+KZ <- cbind(Rad$Diagnosis, Y_predict)
+
+# Plot ROC curve
+pdf(paste0("E:/Radiomics/RF_", best_model_name, "_10fold10rep.pdf"), width = 10, height = 10)
+Train_roc <- plot.roc(
+  KZ[, 1], 
+  KZ[, 2],
+  main = paste("Random Forest (", best_model_name, ") - 10-fold 10-repeated CV", sep = ""),
+  print.thres = "best",
+  percent = TRUE,
+  ci = TRUE,
+  print.auc = TRUE
+)
+dev.off()
+
+# Extract optimal cutoff
+cutoff <- coords(Train_roc, "best")[1, 1]
+cat("Optimal cutoff:", cutoff, "\n")
+
+### 6. Save Output Data Frame------------------------------------------------------------------
+output_df <- data.frame(
+  Diagnosis = as.numeric(Train$Diagnosis),
+  cutoff = rep(cutoff, nrow(Rad)),
+  Y_Rpredict = Y_predict
+)
+write.csv(output_df, file = paste0("E:/Radiomics/Y_RF_", best_model_name, "_10fold10rep.csv"), row.names = FALSE)
+
+### 7. Compare Model Performance---------------------------------------------------
+# Create comparison table
+comparison <- data.frame(
+  Model = names(model_list),
+  Best_ROC = sapply(model_list, function(x) max(x$results$ROC)),
+  Best_mtry = sapply(model_list, function(x) x$bestTune$mtry),
+  ntree = sapply(model_list, function(x) ifelse("ntree" %in% names(x$bestTune), x$bestTune$ntree, NA)),
+  nodesize = sapply(model_list, function(x) ifelse("nodesize" %in% names(x$bestTune), x$bestTune$nodesize, NA)),
+  maxnodes = sapply(model_list, function(x) ifelse("maxnodes" %in% names(x$bestTune), x$bestTune$maxnodes, NA))
+)
+print(comparison)
+write.csv(comparison, "E:/Radiomics/RF_ModelComparison_10fold10rep.csv", row.names = FALSE)
+
+# Plot hyperparameter effects for mtry model
+if (best_model_name == "mtry_model") {
+  ggplot(fitRF_mtry$results, aes(x = mtry, y = ROC)) +
+    geom_line() +
+    geom_point() +
+    geom_errorbar(aes(ymin = ROC - ROCSD, ymax = ROC + ROCSD), width = 2) +
+    labs(title = "Effect of mtry on ROC (10-fold 10-repeated CV)", x = "mtry", y = "ROC") +
+    theme_minimal()
+  ggsave("E:/Radiomics/RF_mtry_vs_ROC_10fold10rep.png", width = 8, height = 6)
+}
+```
